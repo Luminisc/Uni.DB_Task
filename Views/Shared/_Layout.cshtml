@@ -67,39 +67,41 @@
                     </div>
                     <div class="col-md-3 col-lg-3 col-xs-6 col-sm-6 text-right text-sm text-res">
                         <div class="cart-user-language">
-                            <div class="shopping-cart ml-30">
-                                <a class="top-cart" href="cart.html"><i class="pe-7s-cart"></i></a>
-                                <ul>
-                                    @foreach (var item in Statics.ShoppingCart)
-                                    {
+                            <form action="@Url.Action("RemoveGameFromCart","Home")" method="post">
+                                <div class="shopping-cart ml-30">
+                                    <a class="top-cart" href="cart.html"><i class="pe-7s-cart"></i></a>
+                                    <ul>
+                                        @foreach (var item in Statics.ShoppingCart)
+                                        {
+                                            <li>
+                                                <div class="cart-img">
+                                                    <a href="#"><img src="@item.PathThumbnail" alt=""></a>
+                                                </div>
+                                                <div class="cart-content">
+                                                    <h3><a href="#">@item.Name</a> </h3>
+                                                    @*<span><b>S, Orange</b></span>*@
+                                                    <span class="cart-price">@item.Price руб.</span>
+                                                </div>
+                                                <div class="cart-del">
+                                                    <button name="id" value="@item.Id.ToString()"><i class="pe-7s-close-circle"></i></button>
+                                                </div>
+                                            </li>
+                                        }
                                         <li>
-                                            <div class="cart-img">
-                                                <a href="#"><img src="@item.PathThumbnail" alt=""></a>
-                                            </div>
-                                            <div class="cart-content">
-                                                <h3><a href="#">@item.Name</a> </h3>
-                                                @*<span><b>S, Orange</b></span>*@
-                                                <span class="cart-price">@item.Price руб.</span>
-                                            </div>
-                                            <div class="cart-del">
-                                                <i class="pe-7s-close-circle"></i>
+                                            @*<div class="shipping">
+                                                    <span class="f-left">Shipping </span>
+                                                    <span class="f-right cart-price"> $7.00</span>
+                                                </div>*@
+                                            @*<hr class="shipping-border">*@
+                                            <div class="shipping">
+                                                <span class="f-left">Итого</span>
+                                                <span class="f-right cart-price">@Statics.ShoppingCart.Sum(x => x.Price) руб.</span>
                                             </div>
                                         </li>
-                                    }
-                                    <li>
-                                        @*<div class="shipping">
-                                                <span class="f-left">Shipping </span>
-                                                <span class="f-right cart-price"> $7.00</span>
-                                            </div>*@
-                                        @*<hr class="shipping-border">*@
-                                        <div class="shipping">
-                                            <span class="f-left">Итого</span>
-                                            <span class="f-right cart-price">@Statics.ShoppingCart.Sum(x => x.Price) руб.</span>
-                                        </div>
-                                    </li>
-                                    <li class="checkout m-0"><a href="#">checkout <i class="pe-7s-angle-right"></i></a></li>
-                                </ul>
-                            </div>
+                                        <li class="checkout m-0"><a href="#">checkout <i class="pe-7s-angle-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </form>
                             <div class="user">
                                 <a href="#" data-toggle="modal" data-target="#loginModal"><i class="pe-7s-add-user"></i></a>
                             </div>

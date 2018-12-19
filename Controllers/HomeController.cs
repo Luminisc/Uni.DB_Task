@@ -131,6 +131,15 @@ namespace Uni.DB_Task.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult RemoveGameFromCart(string id)
+        {
+            var collection = database.GetCollection<ShoppingCartItem>("ShoppingCart");
+            collection.DeleteOne(x => x.Id == ObjectId.Parse(id));
+            Statics.ShoppingCart = collection.AsQueryable().Select(x => x).ToList();
+
+            return RedirectToAction("Index", "Home");
+        }
+
 
         protected string Get(string uri)
         {
