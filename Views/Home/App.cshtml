@@ -1,0 +1,75 @@
+﻿@model GameDetailsViewModel
+@{
+    ViewData["Title"] = "";
+}
+
+<form action="@Url.Action("AddGameToCart","Home")" method="post">
+    <div class="waraper">
+        <div class="page-section section ptb-100">
+            <div class="container-fluid">
+                <div class="row mb-40">
+                    <!-- QuickView Product Images -->
+                    <div class="col-md-5 col-sm-6 col-xs-12 mb-40">
+                        <!-- Tab panes -->
+                        <div class="tab-content mb-10">
+                            <div class="pro-large-img tab-pane active" id="pro-large-img-1">
+                                <img src="@Model.Screens.First().path_full" alt="" />
+                            </div>
+                        </div>
+                        <!-- QuickView Product Thumbnail Slider -->
+                        <div class="pro-thumb-img-slider">
+                            @foreach (var item in Model.Screens)
+                            {
+                                <div><a href="#pro-large-img" data-toggle="tab"><img src="@item.path_thumbnail" alt="" /></a></div>
+                            }
+                        </div>
+                    </div>
+                    <!-- QuickView Product Details -->
+                    <div class="col-md-7 col-sm-6 col-xs-12 mb-40">
+                        <div class="product-details section">
+                            <!-- Title -->
+                            <h1 class="title">@Model.Name</h1>
+                            <!-- Price Ratting -->
+                            <div class="price-ratting section">
+                                <!-- Price -->
+                                <span class="price float-left"><span class="new">@Model.PriceText</span></span>
+                                <!-- Ratting -->
+                                <span class="ratting float-right">
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    <i class="fa fa-star active"></i>
+                                    @*<span> (01 Customer Review)</span>*@
+                                </span>
+                            </div>
+                            <!-- Short Description -->
+                            <div class="short-desc section">
+                                <h5 class="pd-sub-title">Описание</h5>
+                                <p>@Html.Raw(Model.Description)</p>
+                            </div>
+                            <!-- Product Size -->
+                            @*<div class="section">
+                                    <h5 class="pd-sub-title">Выберите тип издания</h5>
+                                    <button>Original</button>
+                                    <button class="active">Deluxe Editions</button>
+                                    <button>Ultimate Editions</button>
+                                </div>*@
+                            <!-- Quantity Cart -->
+                            <div class="quantity-cart section">
+                                @*<div class="product-quantity2">
+                                    <input type="text" value="0">
+                                </div>*@
+                                <button class="add-to-cart" name="appid" value="@Model.AppId">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
+
